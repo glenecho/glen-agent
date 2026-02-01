@@ -73,9 +73,7 @@ fn parse_docker(output: &str) -> Result<Vec<Service>> {
 fn extract_port(name: &str) -> Option<u16> {
     // Prefer ports encoded as service@PORT.service
     if let Some(cap) = Regex::new(r"@(\d+)").unwrap().captures(name) {
-        return cap
-            .get(1)
-            .and_then(|m| m.as_str().parse::<u16>().ok());
+        return cap.get(1).and_then(|m| m.as_str().parse::<u16>().ok());
     }
     name.split('.')
         .next()
@@ -104,8 +102,7 @@ mod tests {
 
     #[test]
     fn test_parse_systemctl() {
-        let input =
-            "nginx.service loaded active running A high performance web server\nhttpd@8080.service loaded active running";
+        let input = "nginx.service loaded active running A high performance web server\nhttpd@8080.service loaded active running";
         let parsed = parse_systemctl(input).unwrap();
         assert!(parsed.contains(&Service {
             name: "httpd@8080.service".into(),
