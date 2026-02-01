@@ -23,7 +23,7 @@ mod tests {
     use super::*;
 
     #[tokio::test]
-    async fn empty_noop() {
+    async fn test_register_services_empty_list_succeeds() {
         let res = register_services("http://example.com", &[]).await;
         assert!(res.is_ok());
     }

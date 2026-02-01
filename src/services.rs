@@ -77,7 +77,7 @@ fn extract_port(name: &str) -> Option<u16> {
     }
     name.split('.')
         .next()
-        .and_then(|base| base.split('-').last())
+        .and_then(|base| base.split('-').next_back())
         .and_then(|p| p.parse().ok())
 }
 
